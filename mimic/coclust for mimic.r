@@ -1,0 +1,22 @@
+library(cluster)
+library(copula)
+library(CoClust)
+getwd()
+setwd("C:/Users/zeynep/Desktop")
+x<-read.csv("coclusta.csv", header=TRUE)
+y=t(x)
+clustC=CoClust(y,dimset=2:10,noc=1,copula="clayton",method.ma="empirical",penalty="BICk",method.c="ml",writeout=1)
+clustG=CoClust(y,dimset=2:10,noc=1,copula="gumbel",method.ma="empirical",penalty="BICk",method.c="ml",writeout=1)
+clust=CoClust(y,dimset=2:10,noc=2,copula="frank",method.ma="empirical",penalty="BICk",method.c="ml",writeout=1)
+
+sink("clust.txt", append=TRUE)
+print(clust)
+sink()
+
+sink("clustC.txt", append=TRUE)
+print(clustC)
+sink()
+
+sink("clustG.txt", append=TRUE)
+print(clustG)
+sink()
